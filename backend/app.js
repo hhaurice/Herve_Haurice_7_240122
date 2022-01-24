@@ -19,7 +19,7 @@ db.connect(function(err) {
 
 app.use((req, res) => {
 
-    res.json({ message: 'On va manger... des chips!' });
+    res.json({ message: 'Bonjour le monde!' });
 
 });
 
