@@ -45,17 +45,36 @@ const User = sequelize.define('user', {
 
 User.sync( {alter: true} )
  .then(() => {
-     const user = User.build({
-         firstName: 'Keylor',
-         lastName: 'Navas',
-         email: 'knavas@gmail.com',
-         password: 'keylor123'
-     });
-     return user.save();
-
-}).then((data) =>{
-    console.log("User added to database")
-
+     return User.bulkCreate([
+        {
+            firstName: 'Presnel',
+            lastName: 'Kimpembe',
+            email: 'pkimpembe@gmail.com',
+            password: 'presnel123'
+         },
+         {
+            firstName: 'Achraf',
+            lastName: 'Hakimi',
+            email: 'ahakimi@gmail.com',
+            password: 'achraf123'
+         },
+         {
+            firstName: 'Marco',
+            lastName: 'Verratti',
+            email: 'mverratti@gmail.com',
+            password: 'marco123'
+         },
+         {
+            firstName: 'Kylian',
+            lastName: 'Mbappe',
+            email: 'kmbappe@gmail.com',
+            password: 'kylian123'
+         }
+     ]);
+}).then((data) => {
+    data.forEach((element) => {
+        console.log(element.toJSON());
+    })
 }).catch((err) => {
     console.log(err)
 });
