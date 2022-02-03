@@ -3,7 +3,9 @@ const express = require('express');
 const app = express();
 
 const Sequelize = require('sequelize');
-const { DataTypes } = Sequelize;
+const { DataTypes, Op } = Sequelize;
+
+const bcrypt = require('bcrypt');
 
 require('dotenv').config()
 
@@ -35,46 +37,41 @@ const User = sequelize.define('user', {
   },
   email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true,
+      unique: true,
+      validate: {
+          isEmail: true, 
+          myEmailValidator(value) {
+              if (value === null) {
+                  throw new Error("Please enter an email")
+              } 
+          }
+      }
   },
   password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      set(value) {
+        // Storing passwords in plaintext in the database is terrible.
+        // Hashing the value with an appropriate cryptographic hash function is better.
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(value, salt);
+        this.setDataValue('password', hash);
+      }
   }
 });
 
 User.sync( {alter: true} )
  .then(() => {
-     return User.bulkCreate([
-        {
-            firstName: 'Presnel',
-            lastName: 'Kimpembe',
-            email: 'pkimpembe@gmail.com',
-            password: 'presnel123'
-         },
-         {
-            firstName: 'Achraf',
-            lastName: 'Hakimi',
-            email: 'ahakimi@gmail.com',
-            password: 'achraf123'
-         },
-         {
-            firstName: 'Marco',
-            lastName: 'Verratti',
-            email: 'mverratti@gmail.com',
-            password: 'marco123'
-         },
-         {
-            firstName: 'Kylian',
-            lastName: 'Mbappe',
-            email: 'kmbappe@gmail.com',
-            password: 'kylian123'
-         }
-     ]);
+     return User.create({
+         firstName: 'Presnel',
+         lastName: 'Kimpembé',
+         email: 'pkimpembe@gmail.com',
+         password: 'presko123'
+    });
 }).then((data) => {
-    data.forEach((element) => {
-        console.log(element.toJSON());
-    })
+            console.log(data.firstName);
+            console.log(data.password);
 }).catch((err) => {
     console.log(err)
 });
