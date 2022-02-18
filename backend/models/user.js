@@ -1,14 +1,11 @@
-const Sequelize = require('sequelize');
-const { DataTypes } = Sequelize;
+const { Sequelize, DataTypes} = require('sequelize');
 
+const sequelize = require('../config/db');
 
-const User = sequelize.define('User', {
-  // Model attributes are defined here
-  user_id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
+const bcrypt = require('bcrypt');
+
+const User = sequelize.define('user', {
+
   firstName: {
     type: DataTypes.STRING,
     allowNull: false
@@ -19,17 +16,27 @@ const User = sequelize.define('User', {
   },
   email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true,
+      unique: true,
+      validate: {
+          isEmail: true, 
+          myEmailValidator(value) {
+              if (value === null) {
+                  throw new Error("Please enter an email")
+              } 
+          }
+      }
   },
   password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      set(value) {
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(value, salt);
+        this.setDataValue('password', hash);
+      }
   }
 });
 
-User.sync().then(() => {
-    console.log("Table and model syncded successfully")
-}).catch((err) => {
-    console.log("Error syncing the table")
-})
-
+module.exports = User;
