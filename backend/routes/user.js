@@ -1,53 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
+const userCtrl = require('../controllers/user');
 
-const db = require('./config/db');
+router.get('/', userCtrl.getAllUser);
 
-const User = require('./models/user');
+router.post('/', userCtrl.createUser);
 
-const bodyParser = require('body-parser');
+router.get('/:id', userCtrl.getOneUser);
 
-app.use(bodyParser.json());
+router.put('/:id', userCtrl.modifyUser);
 
-router.post('/users', (req, res, next) => {
-    User.create({
-        ...req.body
-    })
-        .then(users => res.status(201).json({ message: 'Utilisateur enregistré'}))
-        .catch(error => res.status(400).json({ error }));
-});
+router.delete('/:id', userCtrl.deleteUser);
 
-router.get('/users/:id', (req, res, next) => {
-    User.findByPk(req.params.id)
-        .then(users => res.status(200).json(users))
-        .catch(error => res.status(400).json({ message: 'Utilisateur inconnu' }));
-});
-
-router.put('/users/:id', (req, res, next) => {
-        User.findByPk(req.params.id).then((user) =>{
-            user.update({
-                ...req.body
-            })
-            .then((user) => res.status(200).json( {message: 'Utilisateur modifié'}))
-            .catch(error => res.status(400).json({ error }));
-        })
-});
-
-
-router.delete('/users/:id', (req, res) => {
-    User.findByPk(req.params.id).then((user) =>{
-        user.destroy()
-        .then((user) => res.status(200).json( {message: 'Utilisateur supprimé'}))
-        .catch(error => res.status(400).json({ error }));
-    })
-});
-
-
-router.get('/users', (req, res, next) => {
-    User.findAll()
-        .then(users => res.status(200).json(users))
-        .catch(error => res.status(400).json({ error }));
-});
 
 module.exports = router;

@@ -2,10 +2,6 @@ const express = require('express');
 
 const app = express();
 
-const db = require('./config/db');
-
-const User = require('./models/user');
-
 const bodyParser = require('body-parser');
 
 const userRoutes = require('./routes/user')
@@ -19,6 +15,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/users', userRoutes);
+app.use('/', userRoutes);
 
 module.exports = app;
