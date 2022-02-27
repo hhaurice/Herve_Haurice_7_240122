@@ -4,6 +4,10 @@ const sequelize = require('../config/db');
 
 const bcrypt = require('bcrypt');
 
+const Post = require('./post');
+const Comment = require('./comment');
+const Like = require('./like');
+
 const User = sequelize.define('user', {
 
   firstName: {
@@ -38,6 +42,26 @@ const User = sequelize.define('user', {
       }
   }
 });
+
+User.hasMany(Post, {
+  required: true,
+  unique: true
+});
+Post.belongsTo(User);
+
+User.hasMany(Comment, {
+  required: true,
+  unique: true
+});
+Comment.belongsTo(User);
+
+User.hasMany(Like, {
+  required: true,
+  unique: true
+});
+Like.belongsTo(User);
+
+//sequelize.sync({ alter: true});
 
 
 module.exports = User;

@@ -2,7 +2,9 @@ const Post = require('../models/post');
 
 exports.createPost = (req, res, next) => {
     Post.create({
-        ...req.body
+        message: req.body.message,
+        tag: req.body.tag,
+        userId: req.body.userId
     })
         .then(posts => res.status(201).json(posts))
         .catch(error => res.status(400).json({ error }));
@@ -17,9 +19,11 @@ exports.getOnePost = (req, res, next) => {
 exports.modifyPost = (req, res, next) => {
     Post.findByPk(req.params.id).then((post) =>{
         post.update({
-            ...req.body
+            message: req.body.message,
+            tag: req.body.tag,
+            userId: req.body.userId
         })
-        .then((post) => res.status(200).json( {message: 'Vous avez modifié votre publication'}))
+        .then(() => res.status(200).json( {message: 'Vous avez modifié votre publication'}))
         .catch(error => res.status(400).json({ error }));
     })
 };
@@ -27,7 +31,7 @@ exports.modifyPost = (req, res, next) => {
 exports.deletePost = (req, res, next) => {
     Post.findByPk(req.params.id).then((post) =>{
         post.destroy()
-        .then((post) => res.status(200).json( {message: 'Vous avez supprimé votre publication'}))
+        .then(() => res.status(200).json( {message: 'Vous avez supprimé votre publication'}))
         .catch(error => res.status(400).json({ error }));
     })
 };
