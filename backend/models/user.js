@@ -42,10 +42,7 @@ const User = sequelize.define('user', {
   }
 });
 
-User.hasMany(Post, {
-  required: true,
-  unique: true
-});
+User.hasMany(Post);
 Post.belongsTo(User);
 
 User.hasMany(Comment, {
