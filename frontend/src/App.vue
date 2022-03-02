@@ -1,15 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <h1>Hello World</h1>
+  <subscription-form/>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+
+import subscriptionForm from './components/suscriptionForm.vue'
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    subscriptionForm,
   },
 };
 </script>
