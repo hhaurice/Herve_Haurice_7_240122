@@ -5,11 +5,20 @@ module.exports = {
   },
   extends: [
     "plugin:vue/vue3-essential",
+<<<<<<< HEAD
     "eslint:recommended",
     "plugin:prettier/recommended",
   ],
   parserOptions: {
     "requireConfigFile": false,
+=======
+    /*"eslint:recommended",
+    "plugin:prettier/recommended",
+    */
+  ],
+  parserOptions: {
+    requireConfigFile: false,
+>>>>>>> main
   },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",

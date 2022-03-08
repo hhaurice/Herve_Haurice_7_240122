@@ -14,6 +14,10 @@ const Post = sequelize.define('post', {
     tag: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 });
 
@@ -29,6 +33,6 @@ Post.hasMany(Like, {
 });
 Like.belongsTo(Post);
 
-//sequelize.sync({ alter: true});
+// sequelize.sync({ alter: true});
 
 module.exports = Post;

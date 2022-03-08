@@ -1,10 +1,12 @@
 const Post = require('../models/post');
+const User = require('../models/user');
 
 exports.createPost = (req, res, next) => {
     Post.create({
         message: req.body.message,
         tag: req.body.tag,
         userId: req.body.userId
+       
     })
         .then(posts => res.status(201).json(posts))
         .catch(error => res.status(400).json({ error }));
