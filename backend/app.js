@@ -17,8 +17,8 @@ app.use((req, res, next) => {
 });
 
 
-app.use('/', postRoutes);
-app.use('/auth', userRoutes);
+app.use('/auth', postRoutes);
+app.use('/', userRoutes);
 
 
 module.exports = app;

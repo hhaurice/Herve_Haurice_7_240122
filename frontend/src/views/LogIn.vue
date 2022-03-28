@@ -16,9 +16,11 @@
 <script>
 
 import useVuelidate from '@vuelidate/core'
-import { required, email, minLength } from '@vuelidate/validators'
+import { required, email } from '@vuelidate/validators'
 
 import { reactive, computed } from 'vue' 
+
+import axios from 'axios'
 
 export default {
 
@@ -34,7 +36,7 @@ setup () {
         return {
             email: { required, email },
             password: {
-                password: { required, minLength: minLength(8) },
+                password: { required },
             },
         }
     })
@@ -53,9 +55,24 @@ setup () {
             }
         },
     },
+      el: 'login',
+  data() {
+    return {
+      user: [],
+    }
+  },
+  mounted() {
+    axios.post('http://localhost:3000/login', {
+        "email": '',
+        "password": '',
+    }) 
+   .then(response => this.user = response)  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
+  //      .then( response => console.log(response))
+        .catch( error => console.log(error))
+    
+    }
 }
 
 </script>
-
 
 

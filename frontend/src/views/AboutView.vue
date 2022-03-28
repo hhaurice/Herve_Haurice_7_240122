@@ -1,9 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <ul>
-      <li v-for="user in user.data" :key="user.id">{{ user.name }}</li>
-    </ul>
+    {{ user.data }}
   </div>
 </template>
 
@@ -16,13 +14,14 @@ export default {
   el: '#about',
   data() {
     return {
-      user: [],
+      user: "null",
     }
   },
   mounted() {
-    axios.get('https://jsonplaceholder.typicode.com/users') 
-    .then(response => this.user = response)   
-    
+    axios.get('http://localhost:3000/login/1') 
+      .then(response => this.user = response) 
+      .then (response => console.log(response.data))
+
     }
 };
 
