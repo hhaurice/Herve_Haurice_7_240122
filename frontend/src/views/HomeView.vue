@@ -14,7 +14,6 @@
 <script>
 
 export default {
-  name: 'homeView',
   data() {
     return {
       counter: 0
@@ -22,14 +21,14 @@ export default {
   },
   methods: {
     increaseCounter() {
-      this.counter++
+    this.counter++
     },
-      decreaseCounter() {
-      this.counter--
+    decreaseCounter() {
+    this.counter--
     }
   },
-
 }
+
 </script>
 
 <style>
