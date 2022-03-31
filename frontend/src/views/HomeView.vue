@@ -1,17 +1,21 @@
 <template>
     <p class="msg">{{ $store.state.msg }}</p>
-    <div class="counter">{{ $store.state.counter }}</div>
-    <div class="buttons">
-      <button @click="$store.commit('decreaseCounter')">-</button>
-      <button @click="$store.commit('increaseCounter')">+</button>
-    </div>
+    <counter />
+    <counter-squared />
+    <counter-buttons />
+    <color-code />
 </template>
 
 <script>
 
-
 export default {
   name: 'HomeView',
+  components: {
+    'counter': require('@/components/CounterComponent.vue').default,
+    'counter-squared': require('@/components/CounterSquaredComponent.vue').default,
+    'counter-buttons': require('@/components/ButtonCounterComponent.vue').default,
+    'color-code': require('@/components/ColorCodeComponent.vue').default
+  }
 }
 
 </script>
