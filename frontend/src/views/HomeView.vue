@@ -1,52 +1,20 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <div class="counter">
-      {{ counter }}
-    </div>
-    <div class="buttons">
-      <button @click="decreaseCounter">-</button>
-      <button @click="increaseCounter">+</button>
-    </div>
-  </div>
+    <p class="msg">{{ msg }} </p>
 </template>
 
 <script>
 
+
 export default {
-  data() {
+  name: 'HomeView',
+  data () {
     return {
-      counter: 0
+      msg: "La vérité trop galère vuex"
     }
-  },
-  methods: {
-    increaseCounter() {
-    this.counter++
-    },
-    decreaseCounter() {
-    this.counter--
-    }
-  },
+  }
 }
 
 </script>
-
-<style>
-
-.counter {
-  font-size: 2rem;
-}
-
-div {
-  margin: 10px;
-}
-
-button {
-  margin: 10px;
-  padding: 8px 32px 8px 32px;
-}
-
-</style>
 
 
 
