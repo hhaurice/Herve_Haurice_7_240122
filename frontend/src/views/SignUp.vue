@@ -70,6 +70,20 @@ setup () {
                 alert('Form failed validation')
             }
         },
+        login () {
+            this.$store.dispatch("LOGIN", {
+                name: this.username,
+                lastname: this.lastname,
+                email: this.email,
+                password: this.password
+            })
+            .then(() => {
+                this.$router.push('/')
+            })
+            .catch(error =>{
+                console.log(error("Erreur mon pote"))
+            })
+        }
     },
 }
 
