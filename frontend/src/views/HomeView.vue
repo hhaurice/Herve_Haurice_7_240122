@@ -9,7 +9,7 @@ export default {
   name: 'HomeView',
   data () {
     return {
-      msg: "La vérité trop galère vuex"
+      msg: "Please god help me if you exist"
     }
   }
 }
