@@ -51,24 +51,6 @@ setup () {
     const v$ = useVuelidate(rules, state)
     return { state, v$ }
   },
-    data () {
-        return {
-            form: {
-        "firstName": '',
-        "lastName": '',
-        "email": '',
-        "password": '',
-            }
-        }
-    },
-    validations () {
-        return {
-            firstName: { required },
-            lastName: { required },
-            email: { required },
-            password: { required }
-        }
-    },
     methods: {
         submitForm () {
             this.v$.$validate()
@@ -78,9 +60,8 @@ setup () {
                 alert('Form failed validation')
             }
         axios.post('http://localhost:3000/signup', this.state) 
-//   .then(response => this.user = response)  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
-        .then( response => response.data)
-        .catch( error => (error("Utilisateur non créé")))
+        .then( () => console.log(("Utilisateur créé avec succès")))
+        .catch( error => ({ error }))
         }
     },
 }
