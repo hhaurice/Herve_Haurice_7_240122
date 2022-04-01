@@ -2,24 +2,20 @@
   <div class="signup">
     <h1>Create an account</h1>
     <p>
-    <input type="text" placeholder="name" v-model="state.name" />
-    <span v-if="v$.name.$error">{{ v$.name.$errors[0].$message }}</span>
+    <input type="text" placeholder="firstName" v-model="state.firstName" />
+    <span v-if="v$.firstName.$error">{{ v$.firstName.$errors[0].$message }}</span>
     </p>
     <p>
-    <input type="text" placeholder="lastname" v-model="state.lastname" />
-    <span v-if="v$.lastname.$error">{{ v$.lastname.$errors[0].$message }}</span>
+    <input type="text" placeholder="lastName" v-model="state.lastName" />
+    <span v-if="v$.lastName.$error">{{ v$.lastName.$errors[0].$message }}</span>
     </p>
     <p>
     <input type="email" placeholder="email" v-model="state.email" />
     <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
     </p>
     <p>
-    <input type="password" placeholder="password" v-model="state.password.password" />
-    <span v-if="v$.password.password.$error">{{ v$.password.password.$errors[0].$message }}</span>
-    </p>
-    <p>
-    <input type="password" placeholder="confirm password" v-model="state.password.confirm" />
-    <span v-if="v$.password.confirm.$error">{{ v$.password.confirm.$errors[0].$message }}</span>
+    <input type="password" placeholder="password" v-model="state.password" />
+    <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
     </p>
     <button @click="submitForm">Submit</button>
   </div>
@@ -28,39 +24,51 @@
 <script>
 
 import useVuelidate from '@vuelidate/core'
-import { required, email, minLength, sameAs } from '@vuelidate/validators'
+import { required, email, minLength } from '@vuelidate/validators'
 
 import { reactive, computed } from 'vue' 
+
+import axios from 'axios'
 
 export default {
 
 setup () {
     const state = reactive({
-            name: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             email: '',
-            password: {
-                password: '',
-                confirm: '',
-            }
-
+            password: ''
     })
     const rules = computed(() => {
         return {
-            name: { required },
-            lastname: { required },
+            firstName: { required },
+            lastName: { required },
             email: { required, email },
-            password: {
-                password: { required, minLength: minLength(8) },
-                confirm: { required, sameAs: sameAs(state.password.password) },
-            },
+            password: { required, minLength: minLength(8) },
         }
     })
 
     const v$ = useVuelidate(rules, state)
-
     return { state, v$ }
   },
+    data () {
+        return {
+            form: {
+        "firstName": '',
+        "lastName": '',
+        "email": '',
+        "password": '',
+            }
+        }
+    },
+    validations () {
+        return {
+            firstName: { required },
+            lastName: { required },
+            email: { required },
+            password: { required }
+        }
+    },
     methods: {
         submitForm () {
             this.v$.$validate()
@@ -69,20 +77,10 @@ setup () {
             } else {
                 alert('Form failed validation')
             }
-        },
-        login () {
-            this.$store.dispatch("LOGIN", {
-                name: this.username,
-                lastname: this.lastname,
-                email: this.email,
-                password: this.password
-            })
-            .then(() => {
-                this.$router.push('/')
-            })
-            .catch(error =>{
-                console.log(error("Erreur mon pote"))
-            })
+        axios.post('http://localhost:3000/signup', this.state) 
+//   .then(response => this.user = response)  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
+        .then( response => response.data)
+        .catch( error => (error("Utilisateur non créé")))
         }
     },
 }
