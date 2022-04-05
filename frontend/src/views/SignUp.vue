@@ -62,6 +62,7 @@ setup () {
         axios.post('http://localhost:3000/signup', this.state) 
         .then( () => console.log(("Utilisateur créé avec succès")))
         .catch( error => ({ error }))
+    
         }
     },
 }

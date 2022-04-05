@@ -6,8 +6,8 @@
     <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
     </p>
     <p>
-    <input type="password" placeholder="password" v-model="state.password.password" />
-    <span v-if="v$.password.password.$error">{{ v$.password.password.$errors[0].$message }}</span>
+    <input type="password" placeholder="password" v-model="state.password" />
+    <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
     </p>
     <button @click="submitForm">Submit</button>
   </div>
@@ -27,17 +27,12 @@ export default {
 setup () {
     const state = reactive({
             email: '',
-            password: {
-                password: '',
-            }
-
+            password: '',
     })
     const rules = computed(() => {
         return {
             email: { required, email },
-            password: {
-                password: { required },
-            },
+            password: { required }
         }
     })
 
@@ -53,6 +48,9 @@ setup () {
             } else {
                 alert('Form failed validation')
             }
+            axios.post('http://localhost:3000/login', this.state) 
+        .then( console.log (this.state))  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
+        .catch( error => console.log(error))
         },
     },
       el: 'login',
@@ -60,17 +58,7 @@ setup () {
     return {
       user: [],
     }
-  },
-  mounted() {
-    axios.post('http://localhost:3000/login', {
-        "email": '',
-        "password": '',
-    }) 
-   .then(response => this.user = response)  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
-  //      .then( response => console.log(response))
-        .catch( error => console.log(error))
-    
-    }
+  },   
 }
 
 </script>
