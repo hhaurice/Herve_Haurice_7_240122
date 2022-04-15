@@ -9,7 +9,7 @@
     <input type="password" placeholder="password" v-model="state.password" />
     <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
     </p>
-    <button @click="submitForm">Submit</button>
+    <button @click.prevent="submitForm">Submit</button>
   </div>
 </template>
 
@@ -41,16 +41,26 @@ setup () {
     return { state, v$ }
   },
     methods: {
-        submitForm () {
+          submitForm () {
             this.v$.$validate()
             if (!this.v$.$error) {
                 alert('Form successfully submitted')
             } else {
                 alert('Form failed validation')
             }
-            axios.post('http://localhost:3000/login', this.state) 
-        .then( console.log (this.state))  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
+            axios.post('http://localhost:3000/login', this.state, {
+              headers: {'Content-Type':'application/json'},
+              body: JSON.stringify({
+                email: this.email,
+                password: this.password
+              }),
+              credentials: true
+              }) 
+        .then(response => console.log(response))  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
         .catch( error => console.log(error))
+
+        this.$router.push('/auth/posts');
+
         },
     },
       el: 'login',

@@ -33,6 +33,7 @@ import axios from 'axios'
 export default {
 
 setup () {
+
     const state = reactive({
             firstName: '',
             lastName: '',
@@ -60,9 +61,10 @@ setup () {
                 alert('Form failed validation')
             }
         axios.post('http://localhost:3000/signup', this.state) 
-        .then( () => console.log(("Utilisateur créé avec succès")))
-        .catch( error => ({ error }))
-    
+        .then( response => console.log(response))
+        .catch( error => ({ error }));
+        this.$router.push('/login');
+
         }
     },
 }
