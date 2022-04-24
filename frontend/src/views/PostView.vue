@@ -2,9 +2,14 @@
   <div class="about">
     <h1>This is an about page</h1>
   </div>
-  <div class v-if="posts">
-    <p>{{ posts }}</p>
+  <!--
+  <div class v-for="post in posts" :key="post.message">
+    <p>{{ post.message }}</p>
   </div>
+  -->
+  <ul>
+    <li v-for="post in posts" :key="post">{{ post.message }} <br>{{ post.tag }}</li>
+  </ul>
 </template>
 
 <script>
@@ -15,7 +20,11 @@ export default {
 
   data () {
     return  {
-      posts:  {}
+      posts:  [
+       { message: '',
+        tag: ''
+        }
+      ]
     }
   },
   mounted () {
