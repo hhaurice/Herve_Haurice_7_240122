@@ -1,6 +1,6 @@
 <template>
-  <div class="login">
-    <h1>Log in now</h1>
+  <h1>Log in now</h1>
+  <form @submit.prevent="submitForm">
     <p>
     <input type="email" placeholder="email" v-model="state.email" />
     <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
@@ -9,8 +9,8 @@
     <input type="password" placeholder="password" v-model="state.password" />
     <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
     </p>
-    <button @click.prevent="submitForm">Submit</button>
-  </div>
+    <button type="submit">Submit</button>
+  </form>
 </template>
 
 <script>
@@ -41,34 +41,23 @@ setup () {
     return { state, v$ }
   },
     methods: {
-          submitForm () {
+          async submitForm () {
             this.v$.$validate()
             if (!this.v$.$error) {
                 alert('Form successfully submitted')
             } else {
                 alert('Form failed validation')
             }
-            axios.post('http://localhost:3000/login', this.state, {
-              headers: {'Content-Type':'application/json'},
-              body: JSON.stringify({
-                email: this.email,
-                password: this.password
-              }),
-              credentials: true
-              }) 
-        .then(response => console.log(response))  // A garder pour si je veux afficher le nom de l'utilisateur connecté ou du token ou ce que j'ai posté
+          await axios.post('http://localhost:3000/login', this.state)
+        .then(response => {
+          if(response.data.token) {
+            localStorage.setItem('token', response.data.token)
+          }
+          this.$router.push('/auth/posts')
+        })
         .catch( error => console.log(error))
-
-        this.$router.push('/auth/posts');
-
         },
-    },
-      el: 'login',
-  data() {
-    return {
-      user: [],
-    }
-  },   
+    },   
 }
 
 </script>

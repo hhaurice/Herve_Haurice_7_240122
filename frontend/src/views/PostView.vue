@@ -21,12 +21,13 @@ export default {
   mounted () {
     
     axios.get('http://localhost:3000/auth/posts', {
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            'Authorization': 'Bearer '+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk5OTIyODMsImV4cCI6MTY1MDA3ODY4M30.mOhIkGBX8gYJRK8HiA3uktxNU40paNU-_feFSqJtKfI',
-            },
-    }) 
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      }
+    ) 
       .then( response => { 
+        console.log(response)
         this.posts = response.data
         console.log(response.data)
         }) 
