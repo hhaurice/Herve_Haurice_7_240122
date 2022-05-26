@@ -1,15 +1,9 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+
+  <div class="post" v-for="post in posts" :key="post">
+    <p>{{ post.message }} <br>{{ post.tag }} </p>
   </div>
-  <!--
-  <div class v-for="post in posts" :key="post.message">
-    <p>{{ post.message }}</p>
-  </div>
-  -->
-  <ul>
-    <li v-for="post in posts" :key="post">{{ post.message }} <br>{{ post.tag }}</li>
-  </ul>
+
 </template>
 
 <script>
