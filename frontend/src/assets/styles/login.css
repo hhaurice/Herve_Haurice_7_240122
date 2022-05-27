@@ -1,0 +1,16 @@
+form input {
+    background: #f2f2f2;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+form button {
+    text-transform: uppercase;
+    background: #4CAF50;
+    padding: 15px;
+    color: #FFFFFF;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }

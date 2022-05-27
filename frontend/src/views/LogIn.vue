@@ -62,4 +62,6 @@ setup () {
 
 </script>
 
+<style src="@/assets/styles/login.css"></style>
+
 

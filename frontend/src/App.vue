@@ -1,5 +1,8 @@
 <template>
   <div class="nav-container">
+    <div class="nav-brand">
+      <router-link to="/"><img src="./assets/icon-left-font.png"></router-link>
+    </div>
     <nav>
       <ul class="nav-list">
         <li><router-link to="/">Accueil</router-link></li>
@@ -47,14 +50,16 @@ nav a.router-link-exact-active {
 
 .nav-container {
   display: flex;
-  justify-content: flex-end;
-  background-color: #f7d6d6;
+  justify-content: space-between;
 }
 
 li {
   list-style: none;
 }
 
+.nav-brand img {
+  height: 200px;
+}
 
 
 </style>
