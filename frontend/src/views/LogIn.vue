@@ -1,16 +1,18 @@
 <template>
-  <h1>Connectez vous à votre compte</h1>
-  <form @submit.prevent="submitForm">
-    <p>
-    <input type="email" placeholder="email" v-model="state.email" />
-    <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
-    </p>
-    <p>
-    <input type="password" placeholder="password" v-model="state.password" />
-    <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
-    </p>
-    <button type="submit">Se connecter</button>
-  </form>
+  <div class="container">
+    <h1>Connectez vous à votre compte</h1>
+    <form @submit.prevent="submitForm">
+      <p>
+      <input type="email" placeholder="email" v-model="state.email" />
+      <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
+      </p>
+      <p>
+      <input type="password" placeholder="password" v-model="state.password" />
+      <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
+      </p>
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
 </template>
 
 <script>

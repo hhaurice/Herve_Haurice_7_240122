@@ -1,6 +1,7 @@
 <template>
   <div class="signup">
     <h1>Create an account</h1>
+    <form @submit.prevent="submitForm">
     <p>
     <input type="text" placeholder="firstName" v-model="state.firstName" />
     <span v-if="v$.firstName.$error">{{ v$.firstName.$errors[0].$message }}</span>
@@ -18,6 +19,7 @@
     <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
     </p>
     <button @click="submitForm">Submit</button>
+    </form>
   </div>
 </template>
 
@@ -70,6 +72,9 @@ setup () {
 }
 
 </script>
+
+<style src="@/assets/styles/login.css"></style>
+
 
 
 
