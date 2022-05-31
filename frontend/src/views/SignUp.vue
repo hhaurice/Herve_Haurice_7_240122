@@ -1,13 +1,13 @@
 <template>
   <div class="signup">
-    <h1>Create an account</h1>
+    <h1>Créer mon compte</h1>
     <form @submit.prevent="submitForm">
     <p>
-    <input type="text" placeholder="firstName" v-model="state.firstName" />
+    <input type="text" placeholder="prénom" v-model="state.firstName" />
     <span v-if="v$.firstName.$error">{{ v$.firstName.$errors[0].$message }}</span>
     </p>
     <p>
-    <input type="text" placeholder="lastName" v-model="state.lastName" />
+    <input type="text" placeholder="nom" v-model="state.lastName" />
     <span v-if="v$.lastName.$error">{{ v$.lastName.$errors[0].$message }}</span>
     </p>
     <p>
@@ -15,10 +15,11 @@
     <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
     </p>
     <p>
-    <input type="password" placeholder="password" v-model="state.password" />
+    <input type="password" placeholder="mot de passe" v-model="state.password" />
     <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
     </p>
     <button @click="submitForm">Submit</button>
+    <p>Déjà inscrit? <a href="/login">Connectez-vous à votre compte</a></p>
     </form>
   </div>
 </template>

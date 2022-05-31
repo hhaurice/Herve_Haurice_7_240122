@@ -7,10 +7,11 @@
       <span v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
       </p>
       <p>
-      <input type="password" placeholder="password" v-model="state.password" />
+      <input type="password" placeholder="mot de passe" v-model="state.password" />
       <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
       </p>
       <button type="submit">Se connecter</button>
+      <p>Pas encore inscrit? <a href="/signup">Créer un compte</a></p>
     </form>
   </div>
 </template>

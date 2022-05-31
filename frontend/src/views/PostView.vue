@@ -1,9 +1,31 @@
 <template>
-
+<!--
   <div class="post" v-for="post in posts" :key="post">
     <p>{{ post.message }} <br>{{ post.tag }} </p>
   </div>
-
+-->
+<head>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<div class="container">
+  <div class="post" v-for="post in posts" :key="post">
+      <ul class="card-list">
+        <li class="card">
+          <img src="../assets/icon.png" class="card-profile-image">
+          <div class="card-container">
+            <div class="card-header">
+                <p class="card-data-username">Bukayo Saka</p><p class="card-data-timestamp">1 day ago</p>
+            </div>
+            <div class="card__body">{{ post.message }}</div>
+            <div class="card-footer">
+              <span class="card__footer__like"><i class="far fa-heart"></i></span>
+              <span class="card__footer__comment"><i class="far fa-comment"></i></span>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+</div>
 </template>
 
 <script>
@@ -40,3 +62,4 @@ export default {
 
 </script>
 
+<style src="@/assets/styles/card.css"></style>
