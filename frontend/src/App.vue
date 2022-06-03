@@ -1,22 +1,19 @@
 <template>
-  <div class="nav-container">
-    <div class="nav-brand">
-      <router-link to="/"><img src="./assets/icon-left-font.png"></router-link>
+  <div class="app-container">
+    <div class="app-brand">
+      <img src="./assets/icon-above-font.png">
     </div>
-    <nav>
-      <ul class="nav-list">
-        <li><router-link to="/">Accueil</router-link></li>
-      </ul>
-      <ul class="nav-list">
-        <li><router-link to="/login">Se connecter</router-link></li>
-      </ul>
-          <ul class="nav-list">
-        <li><router-link to="/signup">S'inscrire</router-link></li>
-      </ul>
-          <ul class="nav-list">
-        <li><router-link to="/account">Profil</router-link></li>
-      </ul>
-    </nav>
+    <div class="menu">
+      <h1>Communiquez et partagez votre quotidien avec vos collègues</h1>
+      <div class="menu-signup">
+        <h2>Rejoignez la communauté dès aujourd'hui.</h2>
+        <router-link to="/signup"><button>S'inscrire</button></router-link> 
+      </div>
+      <div class="menu-login">
+        <h2>Vous avez déjà un compte?</h2>
+        <router-link to="/login"><button>Se connecter</button></router-link> 
+      </div>
+    </div>
   </div>
   <div class="container">
     <router-view></router-view>
@@ -32,34 +29,25 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+.app-container {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  height: 100%;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+h1 {
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 60px;
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-li {
-  list-style: none;
-}
-
-.nav-brand img {
-  height: 200px;
-}
 
 
 </style>
