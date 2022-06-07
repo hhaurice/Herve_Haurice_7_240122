@@ -7,7 +7,7 @@
       <h1>Communiquez et partagez votre quotidien avec vos collègues</h1>
       <div class="menu-signup">
         <h2>Rejoignez la communauté dès aujourd'hui.</h2>
-        <router-link to="/signup"><button>S'inscrire</button></router-link> 
+        <router-link to="/signup"><button>S'inscrire</button></router-link>
       </div>
       <div class="menu-login">
         <h2>Vous avez déjà un compte?</h2>
@@ -48,6 +48,24 @@ h1 {
   line-height: 60px;
 }
 
+button {
+    text-transform: uppercase;
+    background: #4CAF50;
+    width: 200px;
+    padding: 15px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
 
+button:hover {
+  transition-duration: 500ms;
+  background: #27802a;
+}
+
+img {
+  border-right: solid 1px #F7D6D6;
+}
 
 </style>
