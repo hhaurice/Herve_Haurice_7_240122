@@ -19,7 +19,7 @@
     <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
     </p>
     <button @click="submitForm">Submit</button>
-    <p>Déjà inscrit? <a href="/login">Connectez-vous à votre compte</a></p>
+    <p>Déjà inscrit? <router-link to="/login">Connectez-vous à votre compte</router-link></p>
     </form>
   </div>
 </template>

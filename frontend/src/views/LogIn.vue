@@ -11,7 +11,7 @@
       <span v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</span>
       </p>
       <button type="submit">Se connecter</button>
-      <p>Pas encore inscrit? <a href="/signup">Créer un compte</a></p>
+      <p>Pas encore inscrit? <router-link to="/signup">Créer un compte</router-link></p>
     </form>
   </div>
 </template>
