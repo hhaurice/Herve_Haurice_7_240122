@@ -18,8 +18,8 @@
             </div>
             <div class="card-body">{{ post.message }}</div>
             <div class="card-footer">
-              <span class="card__footer__like"><font-awesome-icon :icon="['far', 'heart']" /></span>
-              <span class="card__footer__comment"><font-awesome-icon :icon="['far', 'comment']" /></span>
+              <span class="card-footer-like"><font-awesome-icon :icon="['far', 'heart']" /> 3</span>
+              <span class="card-footer-comment"><font-awesome-icon :icon="['far', 'comment']" /> 8</span>
             </div>
           </div>
         </li>
