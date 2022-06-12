@@ -16,10 +16,10 @@
             <div class="card-header">
                 <p class="card-data-username">Bukayo Saka</p><p class="card-data-timestamp">1 day ago</p>
             </div>
-            <div class="card__body">{{ post.message }}</div>
+            <div class="card-body">{{ post.message }}</div>
             <div class="card-footer">
-              <span class="card__footer__like"><i class="far fa-heart"></i></span>
-              <span class="card__footer__comment"><i class="far fa-comment"></i></span>
+              <span class="card__footer__like"><font-awesome-icon :icon="['far', 'heart']" /></span>
+              <span class="card__footer__comment"><font-awesome-icon :icon="['far', 'comment']" /></span>
             </div>
           </div>
         </li>
@@ -31,8 +31,14 @@
 <script>
 
 import axios from 'axios'
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
+
+  name: 'App',
+  components : {
+    FontAwesomeIcon
+  },
 
   data () {
     return  {
