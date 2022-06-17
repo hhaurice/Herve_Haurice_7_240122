@@ -1,6 +1,8 @@
 <template>
     <div class="navbar">
-        <router-link to="/posts"><img src="../assets/icon-left-font.png"></router-link>
+        <div class="navbar-logo">
+            <router-link to="/posts"><img src="../assets/icon.png" alt="logo" class="image-responsive"></router-link>            
+        </div>
         <div class="profile-section">
             <div class="profile"><font-awesome-icon :icon="['fas', 'circle-user']" /><span class="profile-name">Bukayo</span></div>
             <div class="dropdown">
@@ -42,7 +44,7 @@ export default {
 <style scoped>
 
 img {
-    height: 128px;
+    height: 100px;
 }
 
 .navbar {
@@ -50,8 +52,13 @@ img {
     display: flex;
     justify-content: space-between;
     overflow: hidden;
-    height: 128px;
+    height: 100px;
 
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
 }
 
 .navbar a {
@@ -98,7 +105,7 @@ img {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     margin-top: 180px;
-    margin-right: 20px;
+    margin-right: 50px;
 }
 
 .dropdown-content a {
